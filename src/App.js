@@ -8,14 +8,16 @@ function capitalizeFirst(text) {
     }
 const fadeOut = [
   {opacity: 1},
+  {opacity: 0},
   {opacity: 0}
 ]
 const fadeIn = [
   {opacity: 0},
+  {opacity: 0},
   {opacity: 1}
 ]
 const timing = {
-  duration: 1100,
+  duration: 2000,
   iterations: 1,
 }  
 
@@ -39,9 +41,9 @@ const timing = {
     }
     
 
-    getPokemon(poke) {
+    async getPokemon(poke) {
       document.getElementById('screen-container').animate(fadeOut, timing);
-      setTimeout(() => {
+      await setTimeout(() => {
       fetch('https://pokeapi.co/api/v2/pokemon/' + poke)
           .then((response) => response.json())
           .then((data) => {
@@ -92,7 +94,7 @@ const timing = {
           });
           
         }, 1100)
-        setTimeout(() => {document.getElementById('screen-container').animate(fadeIn, timing)}, 1100);
+        setTimeout(() => {document.getElementById('screen-container').animate(fadeIn, timing)}, 1000);
           console.log(this.state)
     }
 
@@ -136,9 +138,9 @@ const timing = {
         })
       }
       else {
+        setTimeout(() => {document.getElementById('screen-container').style.opacity = 1}, 1000)
         document.getElementById('screen-container').animate(fadeIn, timing);
         
-        setTimeout(() => {document.getElementById('screen-container').style.opacity = 1}, 1000)
         
         this.setState ({
           show: (!this.state.show)
