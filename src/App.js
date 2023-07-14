@@ -43,6 +43,7 @@ const timing = {
 
     async getPokemon(poke) {
       document.getElementById('screen-container').animate(fadeOut, timing);
+      poke = poke.toLowerCase();
       await setTimeout(() => {
       fetch('https://pokeapi.co/api/v2/pokemon/' + poke)
           .then((response) => response.json())
